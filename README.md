@@ -5,3 +5,4 @@ Here you'll find a presentation / quick-start-guide to use AFL, or just to think
 
 I hope you'll enjoy it !
 
+![Alt text](/pres.png?raw=true)
