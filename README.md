@@ -5,4 +5,10 @@ Here you'll find a presentation / quick-start-guide to use AFL, or just to think
 
 I hope you'll enjoy it !
 
-![Alt text](/pres.png?raw=true)
+[![pres image](/pres.png?raw=true)](/AFL_GITHUB.pdf)
+
+Download it [here](/AFL_GITHUB.pdf?raw=true)
+
+I will also add some usefull scripts, which gravitate around afl.
+
+For the moment, there is only one : **crash_summary.sh** which count et summary all crashes in a folder grouped by there out signal.
