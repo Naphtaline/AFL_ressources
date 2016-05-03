@@ -1,6 +1,6 @@
-
+#!/usr/bin/awk -f
 BEGIN {
-  line_count= 0;
+  line_count = 0;
 }
 
 /.*/ {

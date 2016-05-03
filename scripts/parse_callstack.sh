@@ -47,6 +47,15 @@ if [[ $check_var == "" ]] ; then
   exit 1
 fi
 
+check_var=`ls parse_result.awk`
+
+if [[ $check_var == "" ]] ; then
+  echo ""
+  echo "[*] ERROR : Unable to find parse_result.awk."
+  echo "[*]         Please, put it beside this script."
+  exit 1
+fi
+
 nothig ()
 {
   echo ""
@@ -68,6 +77,8 @@ done
 
 printf "\nIt might take a long moment...\n"
 
+rm raw_valgrind_result
+
 for i in $location ; do
   val=$(echo "$i" | sed 's/id:[0-9][0-9]*,sig:\([0-9][0-9]*\).*/\1/')
   
@@ -76,14 +87,16 @@ for i in $location ; do
     current=$((current+1))
     echo "[*] " $current "/" $count
     
-    file_path=$base_location$i
+    file_path=$base_location$
     
     cmd=${1/@@/$file_path}
     valgrind $cmd > crash_case 2>&1
     id=$(echo "$i" | sed 's/id:\([0-9][0-9]*\).*/\1/')
-    awk -f parse_valgrind.awk -v id="$id" limit="$nb_lines" ./crash_case >> valgrind_result
-
+    awk -f parse_valgrind.awk -v id="$id" limit="$nb_lines" ./crash_case >> raw_valgrind_result
   fi
 done
 
 rm crash_case
+
+awk -f parse_result.awk -v limit="nb_lines" ./raw_valgrind_result > compiled_valgrind_result
+
