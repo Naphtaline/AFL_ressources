@@ -87,7 +87,7 @@ for i in $location ; do
     current=$((current+1))
     echo "[*] " $current "/" $count
     
-    file_path=$base_location$
+    file_path=$base_location$i
     
     cmd=${1/@@/$file_path}
     valgrind $cmd > crash_case 2>&1
@@ -98,5 +98,4 @@ done
 
 rm crash_case
 
-awk -f parse_result.awk -v limit="nb_lines" ./raw_valgrind_result > compiled_valgrind_result
-
+awk -f parse_result.awk -v limit="$nb_lines" ./raw_valgrind_result > compiled_valgrind_result

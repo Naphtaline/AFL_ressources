@@ -2,17 +2,19 @@
 BEGIN {
   line_count = 0;
   temp = "";
-  offseted_limit = limit + 3;
+  offseted_limit = limit + 2;
 }
 
 /.*/ {
   if (line_count > 0 && line_count < offseted_limit) 
   {
     if ($0 != "")
+    {
       temp = temp"\n"$0
-    line_count++;
+      line_count++;
+    }
   }
-  if (line_count == offseted_limit)
+  if (line_count >= offseted_limit)
   {
     if (tab[temp] == "")
       tab[temp] = 1;
