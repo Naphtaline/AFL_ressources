@@ -13,4 +13,5 @@ I will also add some usefull scripts, which gravitate around afl.
 
 For the moment, there is only two scripts : 
   - **crash_summary.sh** which which count for each out signals the number of associated crashes. 
-  - **parse_callstack.sh** (go with **parse_valgrind.awk**) will replay all your crash cases with valgrind, and will gather all crash call stacks in one output.
+  - **parse_callstack.sh** will replay all your crash cases with valgrind, and will gather all crash valgrind logs in two outputs, one with **first memory error call stack**, and one with the **crash call stack**.
+    - subscript **parse_valgrind_mem_error.awk** and **parse_valgrind_process_term.awk** are required
